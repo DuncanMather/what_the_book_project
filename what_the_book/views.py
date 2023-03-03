@@ -6,7 +6,8 @@ def redirect_to_home(request):
     return response
 
 def home(request):
-    return HttpResponse("<a href='/home/contactus/'>Contact us.</a>")
+    context_dict = {'boldmessage': 'Template variable!'}
+    return render(request, 'what_the_book/home.html', context = context_dict)
 
-def contact_us(request):
-    return HttpResponse("<a href='/home/'>Home.</a>")
+def contactus(request):
+    return render(request, 'what_the_book/contactus.html', context = {})
