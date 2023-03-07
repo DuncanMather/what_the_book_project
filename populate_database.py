@@ -10,38 +10,38 @@ def populate():
     
     users = [
         {
-            'Username': 'John Dough',
-            'Password': '1234567890'},
+            'username': 'John Dough',
+            'password': '1234567890'},
         {
-            'Username': 'Jane Pastry',
-            'Password': 'incorrect'},
+            'username': 'Jane Pastry',
+            'password': 'incorrect'},
         {
-            'Username': 'ILOVEREADING3275',
-            'Password': 'themostincrediblysecurepassword'},
+            'username': 'ILOVEREADING3275',
+            'password': 'themostincrediblysecurepassword'},
     ]
     
     admins = [
         {
-            'Username': 'theenforcer',
-            'Password': 'password'},
+            'username': 'theenforcer',
+            'password': 'password'},
         {
-            'Username': 'big jim',
-            'Password': 'xG8Wl*g6Fd'},
+            'username': 'big jim',
+            'password': 'xG8Wl*g6Fd'},
     ]
     
     books = [
         {
-            'Title': 'Romeo and Juliet',
-            'Author': 'William Shakespeare'},
+            'title': 'Romeo and Juliet',
+            'author': 'William Shakespeare'},
         {
-            'Title': 'Macbeth',
-            'Author': 'William Shakespeare'},
+            'title': 'Macbeth',
+            'author': 'William Shakespeare'},
         {
-            'Title': 'Othello',
-            'Author': 'William Shakespeare'},
+            'title': 'Othello',
+            'author': 'William Shakespeare'},
         {
-            'Title': 'King Lear',
-            'Author': 'William Shakespeare'},
+            'title': 'King Lear',
+            'author': 'William Shakespeare'},
 
         
 
@@ -50,35 +50,35 @@ def populate():
     
     requests = [
         {
-            'Title': 'The Hobbit',
-            'Author': 'J.R.R. Tolkien'},
+            'title': 'The Hobbit',
+            'author': 'J.R.R. Tolkien'},
         {
-            'Title': 'The Very Hungry Caterpillar',
-            'Author': 'Eric Carle'},
+            'title': 'The Very Hungry Caterpillar',
+            'author': 'Eric Carle'},
     ]
     
     reviews = [
         {
-            'Title': 'lack of modernity',
-            'MainText': 'a large body of text may be fit into a text field',
-            'CreatedOn': date(2022, 3, 3),
-            'Likes': 12},
+            'title': 'lack of modernity',
+            'mainText': 'a large body of text may be fit into a text field',
+            'createdOn': date(2022, 3, 3),
+            'likes': 12},
         {
-            'Title': 'macbeth? more like macsucks',
-            'MainText': 'a deep and scathing review',
-            'CreatedOn': date(2013, 7, 19),
-            'Likes': 527},
+            'title': 'macbeth? more like macsucks',
+            'mainText': 'a deep and scathing review',
+            'createdOn': date(2013, 7, 19),
+            'likes': 527},
     ]
     
         # Helper functions
 
-    def add_user(Username, Password):
-        user = User.objects.get_or_create(Username=Username, Password=Password)[0]
+    def add_user(username, password):
+        user = User.objects.get_or_create(username=username, password=password)[0]
         user.save()
         return user
     
-    def add_admin(Username, Password):
-        admin = Admin.objects.get_or_create(Username=Username, Password=Password)[0]
+    def add_admin(username, password):
+        admin = Admin.objects.get_or_create(username=username, password=password)[0]
         admin.save()
         return admin
     
@@ -89,22 +89,22 @@ def populate():
         book.save()
         return book"""
     
-    def add_book(AddedBy, Title, Author):
-        book = Book.objects.get_or_create(Title=Title, Author=Author, AddedBy=AddedBy)[0]
+    def add_book(addedBy, title, author):
+        book = Book.objects.get_or_create(title=title, author=author, addedBy=addedBy)[0]
         book.save()
         return book
     
-    def add_request(RequestedBy, ReadBy, Title, Author):
-        request = BookToRequest.objects.get_or_create(Title=Title, Author=Author)[0]
-        request.RequestedBy=RequestedBy
-        request.ReadBy=ReadBy
+    def add_request(requestedBy, readBy, title, author):
+        request = BookToRequest.objects.get_or_create(title=title, author=author)[0]
+        request.requestedBy=requestedBy
+        request.readBy=readBy
         request.save()
         return request
     
-    def add_review(ReviewOf, CreatedBy, Title, MainText, CreatedOn, Likes):
-        review = Review.objects.get_or_create(Title=Title, MainText=MainText, CreatedOn=CreatedOn, Likes=Likes)[0]
-        review.ReviewOf=ReviewOf
-        review.CreatedBy=CreatedBy
+    def add_review(reviewOf, createdBy, title, mainText, createdOn, likes):
+        review = Review.objects.get_or_create(title=title, mainText=mainText, createdOn=createdOn, likes=likes)[0]
+        review.reviewOf=reviewOf
+        review.createdBy=createdBy
         review.save()
         return review
     

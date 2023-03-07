@@ -2,7 +2,6 @@
 
 {% load static %}
 
-<html>
     <head>
         <title>
             What the Book?
@@ -18,9 +17,9 @@
         <div>
         {% if books %}
             <ul>
-            {% for book in books %}
-                <li>{{ book.Title }}</li>
-            {% endfor %}
+                {% for book in books %}
+                <li><a href="{% url 'show_book' book.title|slugify %}">{{ book.title }}</a></li>
+                {% endfor %}
             </ul>
         {% else %}
             <p> No books found. </p>

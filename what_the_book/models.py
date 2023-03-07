@@ -1,53 +1,81 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 class User(models.Model):
-    UserId = models.AutoField(unique=True, primary_key=True)
-    Username = models.CharField(max_length=20)
-    Password = models.CharField(max_length=20)
-    ProfilePicture = models.ImageField()
+    userId = models.AutoField(unique=True, primary_key=True)
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
+    profilePicture = models.ImageField()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.username)
+        super(User, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'users'
     
     def __str__(self):
-        return f"{self.Username}"
+        return f"{self.username}"
     
 class Admin(models.Model):
-    UserId = models.AutoField(unique=True, primary_key=True)
-    Username = models.CharField(max_length=20)
-    Password = models.CharField(max_length=20)
-    ProfilePicture = models.ImageField()
+    userId = models.AutoField(unique=True, primary_key=True)
+    username = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
+    profilePicture = models.ImageField()
     
     def __str__(self):
-        return f"{self.Username}"
+        return f"{self.username}"
     
 class Book(models.Model):
-    AddedBy = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True, blank=True)
-    Title = models.CharField(max_length=30)
-    Author = models.CharField(max_length=20)
-    CoverPicture = models.ImageField()
+    addedBy = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=30)
+    author = models.CharField(max_length=20)
+    coverPicture = models.ImageField()
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Book, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'books'
     
     def __str__(self):
-        return f"{self.Title} by {self.Author}"
+        return f"{self.title} by {self.author}"
     
 class BookToRequest(models.Model):
-    RequestedBy = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    ReadBy = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True, blank=True)
-    Title = models.CharField(max_length=30)
-    Author = models.CharField(max_length=20)
+    requestedBy = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    readBy = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=30)
+    author = models.CharField(max_length=20)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(BookToRequest, self).save(*args, **kwargs)
     
     class Meta:
-        verbose_name_plural = 'Requested books'
+        verbose_name_plural = 'requested books'
     
     def __str__(self):
-        return f"{self.Title} requested by {self.RequestedBy}"
+        return f"{self.title} requested by {self.requestedBy}"
     
 class Review(models.Model):
-    ReviewOf = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True)
-    CreatedBy = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    Title = models.CharField(max_length=30)
-    MainText = models.TextField()
-    CreatedOn = models.DateField()
-    Likes = models.IntegerField(default=0)
-        
+    reviewOf = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True)
+    createdBy = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=30)
+    mainText = models.TextField()
+    createdOn = models.DateField()
+    likes = models.IntegerField(default=0)
+    slug = models.SlugField(unique=True, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Review, self).save(*args, **kwargs)
+
+    class Meta:
+        verbose_name_plural = 'reviews'
+    
+
     def __str__(self):
-        return f"Review of {self.ReviewOf}  by {self.CreatedBy}"
+        return f"Review of {self.reviewOf}  by {self.createdBy}"
     
 

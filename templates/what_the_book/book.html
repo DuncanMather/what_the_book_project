@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>What The Book</title>
+    </head>
+
+    <body>
+        <div>
+            {% if book %}
+            <h1>{{ book.title }}</h1>
+            <p>Author: {{ book.author }}</p>
+            {% if book.coverPicture %}
+                <img src="{{ book.coverPicture.url }}" alt="{{ book.title }} cover picture">
+            {% else %}
+                <p>No cover picture available.</p>
+            {% endif %}
+            <h2>Reviews:</h2>
+            {% for review in reviews %}
+                <h3>{{ review.title }}</h3>
+                <p>By {{ review.createdBy }}</p>
+                <p>{{ review.mainText }}</p>
+                <p>Likes: {{ review.likes }}</p>
+            {% empty %}
+                <p>No reviews yet.</p>
+            {% endfor %}
+        {% else %}
+            <p>Book not found.</p>
+        {% endif %}
+        
+        </div>
+    </body>
+</html>
