@@ -30,7 +30,7 @@ class Book(models.Model):
     addedBy = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=30)
     author = models.CharField(max_length=20)
-    coverPicture = models.ImageField()
+    coverPicture = models.ImageField(upload_to='images/book_covers/', blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
