@@ -36,6 +36,16 @@ def populate():
         {
             'Title': 'Macbeth',
             'Author': 'William Shakespeare'},
+        {
+            'Title': 'Othello',
+            'Author': 'William Shakespeare'},
+        {
+            'Title': 'King Lear',
+            'Author': 'William Shakespeare'},
+
+        
+
+
     ]
     
     requests = [
@@ -72,9 +82,15 @@ def populate():
         admin.save()
         return admin
     
-    def add_book(AddedBy, Title, Author):
+    #Commented out code below is the original code for add_book, which was changed to the code below it
+    """def add_book(AddedBy, Title, Author):
         book = Book.objects.get_or_create(Title=Title, Author=Author)[0]
         book.AddedBy=AddedBy
+        book.save()
+        return book"""
+    
+    def add_book(AddedBy, Title, Author):
+        book = Book.objects.get_or_create(Title=Title, Author=Author, AddedBy=AddedBy)[0]
         book.save()
         return book
     
@@ -108,9 +124,15 @@ def populate():
         user = add_user(**item)
         foreign_values['users'].append(user)
     
-    for index, item in enumerate(books):
+    #Commented out code below is the original code for populating books, which was changed to the code below it
+    """for index, item in enumerate(books):
         book = add_book(foreign_values['admins'][index], **item)
+        foreign_values['books'].append(book)"""
+    
+    for index, item in enumerate(books):
+        book = add_book(foreign_values['admins'][index % len(foreign_values['admins'])], **item)
         foreign_values['books'].append(book)
+
     
     for index, item in enumerate(requests):
         request = add_request(foreign_values['users'][index], foreign_values['admins'][index], **item)

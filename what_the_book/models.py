@@ -46,7 +46,7 @@ class Review(models.Model):
     MainText = models.TextField()
     CreatedOn = models.DateField()
     Likes = models.IntegerField(default=0)
-    
+        
     def __str__(self):
         return f"Review of {self.ReviewOf}  by {self.CreatedBy}"
     
