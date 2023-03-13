@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+{% extends 'what_the_book/base.html' %}
 
 {% load static %}
 
-    <head>
-        <title>
-            What the Book?
-        </title>
-    </head>
 
-    <body>
+        {% block title_block %}
+            What the Book?
+        {% endblock %}
+
+
+    {% block body_block %}
         <h1> Example header... </h1>
         <div>
             example text! <br />
@@ -27,7 +27,7 @@
         </div>
         <div>
             <a href="/home/contactus/"> Contact us</a><br />
+            <a href="/what_the_book/request_book/"> Request a new book</a><br />
         </div>
-    </body>
+{% endblock %}
 
-</html>

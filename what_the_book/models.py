@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.utils import timezone
 
 class User(models.Model):
     userId = models.AutoField(unique=True, primary_key=True)
@@ -31,6 +32,8 @@ class Book(models.Model):
     title = models.CharField(max_length=30)
     author = models.CharField(max_length=20)
     coverPicture = models.ImageField(upload_to='images/book_covers/', blank=True)
+
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -65,7 +68,7 @@ class Review(models.Model):
     mainText = models.TextField()
     createdOn = models.DateField()
     likes = models.IntegerField(default=0)
-    slug = models.SlugField(unique=True, null=True, blank=True)
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

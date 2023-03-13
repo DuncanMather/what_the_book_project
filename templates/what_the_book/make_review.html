@@ -1,0 +1,29 @@
+{% extends 'what_the_book/base.html' %}
+
+{% load static %}
+
+        {% block title_block %}}
+            What the Book?
+        {% endblock %}}
+
+
+{% block body_block %}
+        <h1>Make review of { reviewOf.title }</h1>
+
+        <div>
+            <form id="review_form" method="post" action="/home/make_review/">
+
+                {% csrf_token %}
+
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                    {{ field }}
+                {% endfor %}
+                <input type="submit" name="submit" value="Review Book" />
+            </form>
+        </div>
+
+
+{% endblock %}
+

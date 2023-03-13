@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+{% extends 'what_the_book/base.html' %}
 <html>
-    <head>
-        <title>What The Book</title>
-    </head>
+    {% block title_block %}
+            What the book
+    {% endblock %}
 
-    <body>
+
+    {% block body_block %}
         <div>
             {% if book %}
             <h1>{{ book.title }}</h1>
@@ -28,5 +29,8 @@
         {% endif %}
         
         </div>
-    </body>
-</html>
+    <a href="/what_the_book/book/{{ book.slug }}/make_review"> Review Book</a><br />
+    {% endblock %}
+
+
+

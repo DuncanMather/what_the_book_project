@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+{% extends 'what_the_book/base.html' %}
 
-<html>
-    <head>
-        <title>
-            Contact us
-        </title>
-    </head>
 
-    <body>
+
+{% block title_block %}}
+Contact us
+{% endblock %}
+
+
+    {% block body_block %}
         <h1> Example header... </h1>
         <div>
             example text! <br />
@@ -16,6 +16,5 @@
             <img src="{{ MEDIA_URL }}macbeth.jpg" alt="Macbeth book cover."/>
             <a href="/home/"> Home</a><br />
         </div>
-    </body>
+    {% endblock %}
 
-</html>
