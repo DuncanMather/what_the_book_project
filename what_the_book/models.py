@@ -32,7 +32,7 @@ class Book(models.Model):
     title = models.CharField(max_length=30)
     author = models.CharField(max_length=20)
     coverPicture = models.ImageField(upload_to='images/book_covers/', blank=True)
-
+    slug = models.SlugField(unique=True)
 
 
     def save(self, *args, **kwargs):
@@ -50,6 +50,8 @@ class BookToRequest(models.Model):
     readBy = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=30)
     author = models.CharField(max_length=20)
+
+
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

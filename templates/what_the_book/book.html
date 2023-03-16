@@ -29,7 +29,7 @@
         {% endif %}
         
         </div>
-    <a href="/what_the_book/book/{{ book.slug }}/make_review"> Review Book</a><br />
+    <a href="{% url 'what_the_book:make_review' book.slug %}"> Review Book</a><br />
     {% endblock %}
 
 
