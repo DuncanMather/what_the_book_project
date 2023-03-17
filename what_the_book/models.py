@@ -1,6 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.utils import timezone
+from datetime import datetime
 
 
 class User(models.Model):
@@ -80,6 +80,12 @@ class Review(models.Model):
     likes = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
+        if self.likes is not None:
+            if self.likes < 0:
+                self.likes = 0
+        if self.createdOn is not None:
+            if self.createdOn > datetime.now():
+                self.createdOn = datetime.now()
         self.slug = slugify(self.title)
         super(Review, self).save(*args, **kwargs)
 
