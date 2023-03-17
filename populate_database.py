@@ -1,3 +1,4 @@
+from what_the_book.models import *
 from datetime import date
 import django
 import os
@@ -5,7 +6,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'what_the_book_project.settings')
 
 django.setup()
-from what_the_book.models import *
+
 
 def populate():
 
@@ -85,13 +86,6 @@ def populate():
         admin.save()
         return admin
 
-    # Commented out code below is the original code for add_book, which was changed to the code below it
-    """def add_book(AddedBy, Title, Author):
-        book = Book.objects.get_or_create(Title=Title, Author=Author)[0]
-        book.AddedBy=AddedBy
-        book.save()
-        return book"""
-
     def add_book(addedBy, title, author):
         book = Book.objects.get_or_create(
             title=title, author=author, addedBy=addedBy)[0]
@@ -129,11 +123,6 @@ def populate():
     for item in users:
         user = add_user(**item)
         foreign_values['users'].append(user)
-
-    # Commented out code below is the original code for populating books, which was changed to the code below it
-    """for index, item in enumerate(books):
-        book = add_book(foreign_values['admins'][index], **item)
-        foreign_values['books'].append(book)"""
 
     for index, item in enumerate(books):
         book = add_book(foreign_values['admins'][index % len(
