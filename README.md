@@ -3,7 +3,7 @@
  What the Book is a site that offers book enthusiasts the opportunity to give their input on books they have read and view the opinions of others. Visitors will be able to browse reviews on the website, find books and be able to view their prices. Users are also able to create accounts in order to make reviews of their own.
 
 ### Requirements
-These where the installs used during development:
+These were the installs used during development:
 ```
 Django==2.2.28
 Pillow==9.4.0
