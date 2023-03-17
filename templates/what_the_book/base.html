@@ -22,8 +22,15 @@
 
 <div>
     <ul>
-    <li><a href ="{% url 'what_the_book:contactus' %}">Contact Us</a></li>
-    <li><a href ="{% url 'what_the_book:request_book' %}">Request A new book</a></li>
+      {% if user.is_authenticated %}
+      <li><a href ="{% url 'what_the_book:request_book' %}">Request A new book</a></li>
+      <li><a href ="{% url 'what_the_book:account' %}">View account</a></li>
+      <li><a href ="{% url 'what_the_book:logout' %}">Logout</a></li>
+      {% else %}
+      <li><a href ="{% url 'what_the_book:register' %}">Regsiter for an account</a></li>
+      <li><a href ="{% url 'what_the_book:login' %}">Login</a></li>
+      {% endif %}
+      <li><a href ="{% url 'what_the_book:contactus' %}">Contact Us</a></li>
     </ul>
 
 </div>

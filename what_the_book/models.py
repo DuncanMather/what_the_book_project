@@ -2,11 +2,12 @@ from django.db import models
 from django.template.defaultfilters import slugify
 from django.utils import timezone
 
+
 class User(models.Model):
     userId = models.AutoField(unique=True, primary_key=True)
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
-    profilePicture = models.ImageField()
+    profilePicture = models.ImageField(blank=True)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.username)
@@ -14,26 +15,29 @@ class User(models.Model):
 
     class Meta:
         verbose_name_plural = 'users'
-    
+
     def __str__(self):
         return f"{self.username}"
-    
+
+
 class Admin(models.Model):
     userId = models.AutoField(unique=True, primary_key=True)
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
     profilePicture = models.ImageField()
-    
+
     def __str__(self):
         return f"{self.username}"
-    
+
+
 class Book(models.Model):
-    addedBy = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True, blank=True)
+    addedBy = models.ForeignKey(
+        Admin, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=30)
     author = models.CharField(max_length=20)
-    coverPicture = models.ImageField(upload_to='images/book_covers/', blank=True)
+    coverPicture = models.ImageField(
+        upload_to='images/book_covers/', blank=True)
     slug = models.SlugField(unique=True)
-
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -41,36 +45,39 @@ class Book(models.Model):
 
     class Meta:
         verbose_name_plural = 'books'
-    
+
     def __str__(self):
         return f"{self.title} by {self.author}"
-    
+
+
 class BookToRequest(models.Model):
-    requestedBy = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    readBy = models.ForeignKey(Admin, on_delete=models.CASCADE, null=True, blank=True)
+    requestedBy = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    readBy = models.ForeignKey(
+        Admin, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=30)
     author = models.CharField(max_length=20)
-
-
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(BookToRequest, self).save(*args, **kwargs)
-    
+
     class Meta:
         verbose_name_plural = 'requested books'
-    
+
     def __str__(self):
         return f"{self.title} requested by {self.requestedBy}"
-    
+
+
 class Review(models.Model):
-    reviewOf = models.ForeignKey(Book, on_delete=models.CASCADE, null=True, blank=True)
-    createdBy = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    reviewOf = models.ForeignKey(
+        Book, on_delete=models.CASCADE, null=True, blank=True)
+    createdBy = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=30)
     mainText = models.TextField()
     createdOn = models.DateField()
     likes = models.IntegerField(default=0)
-
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -78,9 +85,6 @@ class Review(models.Model):
 
     class Meta:
         verbose_name_plural = 'reviews'
-    
 
     def __str__(self):
         return f"Review of {self.reviewOf}  by {self.createdBy}"
-    
-

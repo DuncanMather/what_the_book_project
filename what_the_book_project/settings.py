@@ -130,3 +130,7 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = MEDIA_DIR
+
+# Authentication
+
+LOGIN_URL = 'what_the_book:login'
