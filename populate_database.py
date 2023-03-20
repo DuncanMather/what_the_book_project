@@ -1,11 +1,12 @@
-from what_the_book.models import *
 from datetime import date
 import django
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'what_the_book_project.settings')
-
 django.setup()
+
+# only import models after setup
+from what_the_book.models import *
 
 
 def populate():
