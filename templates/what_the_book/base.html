@@ -5,7 +5,6 @@
 
 <html lang="en">
 <head>
-    <!-- 	<link rel = "stylesheet" href = "projectStyleSheet.css" > -->
     <link rel = "stylesheet" type = "text/css" href = "main_stylesheet.css">
     <meta charset="UTF-8">
     <title>What The Book?
@@ -22,7 +21,7 @@
 
 <hr />
 
-<div>
+<div  class = "navBar">
     <ul>
       <li><a href ="{% url 'what_the_book:home' %}">Home</a></li>
       {% if user.is_authenticated %}
