@@ -1,0 +1,136 @@
+header{
+    border: solid;
+    background-color: #00004d;
+    text-align: center;
+    position: relative;
+   }
+
+#headerText{
+  color: white;
+}
+
+
+
+body {
+background-color: #e6eeff;
+width: 90%;
+height: 90%;
+margin: 10px auto;
+padding: 10px;
+}
+
+
+h1, p{
+  color: #00004d;
+}
+
+
+li a:hover{
+  background-color: #e6eeff;
+  color: #00004d;
+}
+
+
+.imagePlacement{
+    float:left;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+
+.navBar ul{
+    list-style-type: none;
+    border: solid;
+    background-color: #00004d;
+    display: inline-block;
+    display: block;
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+.navBar li{
+  display:inline-block;
+}
+
+.navBar a{
+  border: solid;
+  border-color: white;
+  color: white;
+  display: block;
+  text-align: center;
+  padding: 5px;
+  margin: 5px;
+  color: white;
+}
+
+
+.verticalNav ul{
+  border: solid;
+  border-color: #00004d;
+  list-style-type: none;
+  width: 100px%;
+  margin:2px;
+  padding:2px;
+  position: absolute;
+  text-align: center;
+}
+
+
+.verticalNav li a {
+  display: inline-block;
+  margin: 5px;
+  font-size:20px;
+  color: #00004d;
+}
+
+.rightSectionImg{
+  float: right;
+  width: 80%;
+  margin: 5px;
+  position: relative;
+  justify-content: center;
+}
+
+.sectionText{
+  display: block;
+  margin: 0 auto;
+}
+
+
+.book-review {
+  display: flex;
+  align-items: center; /* align items vertically */
+}
+
+.book-review img {
+  flex-shrink: 0; /* prevent image from shrinking */
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.book-review .reviews {
+  list-style: none;
+  margin: 10px;
+  padding: 0;
+  border: solid;
+  width: 90%;
+}
+
+
+.formPlacement{
+    float: right;
+    position: absolute;
+    right: 0;
+    width: 60%;
+    height: 60%;
+    margin: 20px;
+}
+
+@media screen and (max-width: 500px){
+  .navBar a{
+    float:none;
+    display: block;
+  }
+}
+
