@@ -5,23 +5,22 @@
 
 <html lang="en">
 <head>
-    <link rel = "stylesheet" type = "text/css" href = "main_stylesheet.css">
     <meta charset="UTF-8">
     <title>What The Book?
       {% block title_block %}
         Example Text
       {% endblock %}
     </title>
+    <link rel="stylesheet" href="{% static 'main_stylesheet.css'}">
+
 </head>
 <body>
-<div>
-  {% block body_block %}
-  {% endblock %}
-</div>
+   <header> <img src = "{% static 'bookLogo.png' %}"
+                  alt = "hallo" width = "60" height ="60" class = "imagePlacement">
+        <h1>What The Book</h1> <!-- will be styled by header in css file -->
+    </header>
 
-<hr />
-
-<div  class = "navBar">
+   <div  class = "navBar"><!-- need to link to horizontal navbar class -->
     <ul>
       <li><a href ="{% url 'what_the_book:home' %}">Home</a></li>
       {% if user.is_authenticated %}
@@ -36,6 +35,14 @@
     </ul>
 
 </div>
+<div>
+  {% block body_block %}
+  {% endblock %}
+</div>
+
+<br />
+
+
 
 
 </body>

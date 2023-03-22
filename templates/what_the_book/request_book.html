@@ -2,6 +2,7 @@
 
 {% load static %}
 
+<!-- connect css -->
 
 {% block title_block %}
             What the Book?
@@ -18,7 +19,7 @@
                 {% for field in form.visible_fields %}
                     {{ field.errors }}
                     {{ field.help_text }}
-                    {{ field }}
+                    {{ field }}<br /><br />
                 {% endfor %}
                 <input type="submit" name="submit" value="Create Book Request" />
             </form>

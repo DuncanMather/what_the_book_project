@@ -2,6 +2,8 @@
 
 {% load static %}
 
+<!-- need to connect css -->
+
         {% block title_block %}
             What the Book?
         {% endblock %}
@@ -12,13 +14,12 @@
 
         <div>
             <form id="review_form" method="post" action="/home/make_review/">
-
                 {% csrf_token %}
 
                 {% for field in form.visible_fields %}
                     {{ field.errors }}
                     {{ field.help_text }}
-                    {{ field }}
+                    {{ field }}<br /><br />
                 {% endfor %}
                 <input type="submit" name="submit" value="Review Book" />
             </form>

@@ -4,13 +4,14 @@
 {% block title_block %}
     Register
 {% endblock title_block %}
+<!-- nothing to change, just need css sheet to work -->
 
 {% block body_block %}
     <h1> Register for What the Book! </h1>
 
     {% if registered %}
         Registration successful! <br>
-        <a href"{% url 'what_the_book:home' %}">Return to Homepage.</a><br>
+        <a href = "{% url 'what_the_book:home' %}">Return to Homepage.</a><br>
 
     {% else %}
         Registration form:
