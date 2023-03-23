@@ -24,11 +24,11 @@ def contactus(request):
     return render(request, 'what_the_book/contactus.html', context={})
 
 
-def show_book(request, book_title_slug):
+def show_book(request, book_name_slug):
     context_dict = {}
     try:
         book = Book.objects.get(
-            Q(title__iexact=book_title_slug.replace('-', ' ')))
+            Q(title__iexact=book_name_slug.replace('-', ' ')))
         reviews = Review.objects.filter(reviewOf=book)
     except Book.DoesNotExist:
         book = None
@@ -75,22 +75,21 @@ def make_review(request, book_name_slug):
         form = ReviewForm(request.POST)
 
         if form.is_valid():
-            if reviewOf:
-                review = form.save(commit=False)
-                review.reviewOf = reviewOf
-                review.createdBy = user
+            review = form.save()
+            review.reviewOf = reviewOf
+            review.createdBy = user
 
-                review.likes = 0
-                review.createdOn = timezone.now()
-                review.save()
+            review.likes = 0
+            review.createdOn = timezone.now()
+            review.save()
 
-                return redirect(reverse('what_the_book:show_book', kwargs={'book_title_slug': book_name_slug
-                                                                           }))
+            return redirect(reverse('what_the_book:show_book', kwargs={'book_name_slug': book_name_slug
+                                                                       }))
+        else:
+            print(form.errors)
 
-            else:
-                print(form.errors)
-
-    context_dict = {'form': form, 'reviewOf': reviewOf}
+    context_dict = {'form': form, 'reviewOf': reviewOf,
+                    'book_name_slug': book_name_slug}
 
     return render(request, 'what_the_book/make_review.html', context=context_dict)
 
