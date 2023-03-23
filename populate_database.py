@@ -64,12 +64,12 @@ def populate():
         {
             'title': 'lack of modernity',
             'mainText': 'a large body of text may be fit into a text field',
-            'createdOn': datetime(2022, 3, 3),
+            'createdOn': datetime(2022, 3, 3).date(),
             'likes': 12},
         {
             'title': 'macbeth? more like macsucks',
             'mainText': 'a deep and scathing review',
-            'createdOn': datetime(2013, 7, 19),
+            'createdOn': datetime(2013, 7, 19).date(),
             'likes': 527},
     ]
 
