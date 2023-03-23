@@ -44,7 +44,6 @@ def request_book(request):
 
     if request.method == 'POST':
         form = BookRequestForm()
-        # save request to database
         if form.is_valid():
             form.save(commit=True)
 
@@ -55,9 +54,13 @@ def request_book(request):
     return render(request, 'what_the_book/request_book.html', {'form': form})
 
 
+@login_required
 def make_review(request, book_name_slug):
 
+    if request.user.is_authenticated:
+        username = request.user.username
     try:
+        user = User.objects.get(username=username)
         reviewOf = Book.objects.get(slug=book_name_slug)
 
     except Book.DoesNotExist:
@@ -75,18 +78,19 @@ def make_review(request, book_name_slug):
             if reviewOf:
                 review = form.save(commit=False)
                 review.reviewOf = reviewOf
+                review.createdBy = user
 
                 review.likes = 0
                 review.createdOn = timezone.now()
                 review.save()
 
-                return redirect(reverse('what_the_book:show_book', kwargs={'book_name_slug': book_name_slug
+                return redirect(reverse('what_the_book:show_book', kwargs={'book_title_slug': book_name_slug
                                                                            }))
 
             else:
                 print(form.errors)
 
-    context_dict = {'form': form, 'reviewOf': reviewOf, }
+    context_dict = {'form': form, 'reviewOf': reviewOf}
 
     return render(request, 'what_the_book/make_review.html', context=context_dict)
 
@@ -144,7 +148,19 @@ def user_login(request):
 
 @login_required
 def account(request):
-    return render(request, 'what_the_book/account.html')
+    if request.user.is_authenticated:
+        username = request.user.username
+    try:
+        user = User.objects.get(username=username)
+        reviews = Review.objects.filter(createdBy=user)
+    except User.DoesNotExist:
+        user = None
+        reviews = None
+    except Review.DoesNotExist:
+        reviews = None
+
+    context_dict = {'user': user, 'reviews': reviews}
+    return render(request, 'what_the_book/account.html', context=context_dict)
 
 
 @login_required
