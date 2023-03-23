@@ -13,6 +13,7 @@
 
     {% block body_block %}
         <div class = "book-review">
+            <div class = "reviewLeft">
             {% if book %}
             <h1>{{ book.title }}</h1>
             <p>Author: {{ book.author }}</p>
@@ -21,6 +22,9 @@
             {% else %}
                 <p>No cover picture available.</p>
             {% endif %}
+        </div>
+
+        <div class="reviewRight">
             <h2>Reviews:</h2>
             {% for review in reviews %}
                 <div class = "reviews">
@@ -32,6 +36,7 @@
             {% empty %}
                 <p>No reviews yet.</p>
             {% endfor %}
+        </div>
         {% else %}
             <p>Book not found.</p>
         {% endif %}
