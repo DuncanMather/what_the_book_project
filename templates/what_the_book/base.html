@@ -6,14 +6,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>What The Book?
+    <title>
       {% block title_block %}
-        Example Text
+      What The Book?
       {% endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'main_stylesheet.css'}">
+    <link rel="stylesheet" href="{% static 'main_stylesheet.css' %}" />
 
 </head>
+
 <body>
    <header> <img src = "{% static 'bookLogo.png' %}"
                   alt = "hallo" width = "60" height ="60" class = "imagePlacement">
