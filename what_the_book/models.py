@@ -84,8 +84,8 @@ class Review(models.Model):
             if self.likes < 0:
                 self.likes = 0
         if self.createdOn is not None:
-            if self.createdOn > datetime.now():
-                self.createdOn = datetime.now()
+            if self.createdOn > datetime.now().date():
+                self.createdOn = datetime.now().date()
         self.slug = slugify(self.title)
         super(Review, self).save(*args, **kwargs)
 
