@@ -109,6 +109,9 @@ li a:hover{
   margin: 0 auto;
   margin-top: 10px;
   display: inline-block;
+  text-align: center;
+  font-size: 20px;
+  margin-top:10px;
 }
 
 
@@ -141,12 +144,11 @@ li a:hover{
 }
 
 
-
 .contactInfo{
     left:0;
-     width: 30%;
-     float:left;
-      height:60%;
+    width: 30%;
+    float:left;
+    height:60%;
 }
 
 .formPlacement{
