@@ -107,8 +107,8 @@ def register(request):
             user.save()
 
             picture_user = user_picture_form.save(commit=False)
-            picture_user.username = user_form['username'].value
-            picture_user.password = user_form['password'].value
+            picture_user.username = user_form['username'].data
+            picture_user.password = user_form['password'].data
 
             if 'profilePicture' in request.FILES:
                 picture_user.profilePicture = request.FILES['profilePicture']
