@@ -11,24 +11,10 @@
         </div>
     {% block body_block %}
 
-
-        <h1> Welcome! </h1>
-        <div class = "rightSectionimg">
-                    <img src = "https://www.history.ac.uk/sites/default/files/styles/small/public/2019-07/mc_ihr_119_1.JPG?h=9eb0d413&itok=K9ma34SU"
-                         alt = "hullo" width = "600" height = "400" style = "position:absolu"><br/>
-            <br />
-
-            <p style = "text-align: center; font-size: 20px; margin-top: 10px;">
-
-                <!-- will be properly organised by the css once fixed -->
-                Welcome to What The Book, the site where you can talk about your
-                favourite (or least favourite) books with hundreds of other
-                enthusiasts! <br /><strong>We hope you enjoy your visit!</strong></p>>
-        </div>
-
-        <div>
+                <div class = "verticalNav">
         {% if books %}
-            <ul><!-- call vertical navBar on this -->
+            <ul>
+                <label>Available Books:</label>
                 {% for book in books %}
                 <li><a href="{% url 'show_book' book.title|slugify %}">{{ book.title }}</a></li>
                 {% endfor %}
@@ -37,6 +23,26 @@
             <p> No books found. </p>
         {% endif %}
         </div>
+
+        <div class="filler"></div>
+
+        <div class = "rightSectionImg">
+            <h1> Welcome! </h1>
+                    <img src = "https://www.history.ac.uk/sites/default/files/styles/small/public/2019-07/mc_ihr_119_1.JPG?h=9eb0d413&itok=K9ma34SU"
+                         alt = "hullo" width = "600" height = "400" ><br/>
+            <br />
+
+            <p style = "text-align: center; font-size: 20px; margin-top: 10px;">
+
+                <!-- will be properly organised by the css once fixed -->
+                Welcome to What The Book, the site where you can talk about your
+                favourite (or least favourite) books with hundreds of other
+                enthusiasts! <br /><strong>We hope you enjoy your visit!</strong></p>
+        </div>
+
+
+
+
 
         <br />
         <br />
