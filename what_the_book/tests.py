@@ -30,3 +30,19 @@ class ViewTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'No books found.')
         self.assertQuerysetEqual(response.context['books'], [])
+
+    def test_home_with_book(self):
+        add_book("Book about testing", "The tester")
+        response = self.client.get(reverse('what_the_book:home'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Book about testing")
+        number_of_books = len(response.context['books'])
+        self.assertEqual(number_of_books, 1)
+
+
+def add_book(title, author):
+    book = Book.objects.get_or_create(title=title)[0]
+    book.title = title
+    book.author = author
+    book.save()
+    return book
