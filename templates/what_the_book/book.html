@@ -31,7 +31,8 @@
                     <h3>{{ review.title }}</h3>
                     <p>By {{ review.createdBy }}</p>
                     <p>{{ review.mainText }}</p>
-                    <p>Likes: {{ review.likes }}</p>
+                    <strong>Likes: {{ review.likes }}</strong>
+
                 </div>
             {% empty %}
                 <p>No reviews yet.</p>
