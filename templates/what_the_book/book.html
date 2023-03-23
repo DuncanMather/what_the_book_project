@@ -4,7 +4,11 @@
 
 <html>
     {% block title_block %}
-            What the book
+            {% if book %}
+            {{ book.title }}
+            {% else %}
+            Book
+            {% endif %}
     {% endblock %}
 
     {% block body_block %}
