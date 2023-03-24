@@ -35,16 +35,20 @@ def populate():
     books = [
         {
             'title': 'Romeo and Juliet',
-            'author': 'William Shakespeare'},
+            'author': 'William Shakespeare',
+            'coverPicture':'images/book_covers/romeo_and_juliet.jpg'},
         {
             'title': 'Macbeth',
-            'author': 'William Shakespeare'},
+            'author': 'William Shakespeare',
+            'coverPicture':'images/book_covers/macbeth.jpg'},
         {
             'title': 'Othello',
-            'author': 'William Shakespeare'},
+            'author': 'William Shakespeare',
+            'coverPicture':'images/book_covers/othello.jpg'},
         {
             'title': 'King Lear',
-            'author': 'William Shakespeare'},
+            'author': 'William Shakespeare',
+            'coverPicture':'images/book_covers/king-lear.jpg'},
 
 
 
@@ -87,9 +91,9 @@ def populate():
         admin.save()
         return admin
 
-    def add_book(addedBy, title, author):
+    def add_book(addedBy, title, author,coverPicture):
         book = Book.objects.get_or_create(
-            title=title, author=author, addedBy=addedBy)[0]
+            title=title, author=author, addedBy=addedBy,coverPicture=coverPicture)[0]
         book.save()
         return book
 
